@@ -150,11 +150,11 @@ var x = 100
 
 var y = 10000
 
-print("交换前：x=\(x), y=\(y)")
+//print("交换前：x=\(x), y=\(y)")
 
 swap(&x, &y)
 
-print("交换后：x=\(x), y=\(y)")
+//print("交换后：x=\(x), y=\(y)")
 
 func greeting5(_ name: String, from hometown: String) -> String {
     "Hello \(name), I think your hometwown is \(hometown)"
@@ -173,19 +173,19 @@ func multipleNumber(_ num1:Int, _ num2: Int) -> Int{
 // 给字段赋值函数类型，方式一
 var methodTwoInt = addTwoNumber(_:_:)
 
-print("1123 + 123123 = \(methodTwoInt(1123,123123))")
+//print("1123 + 123123 = \(methodTwoInt(1123,123123))")
 
 // 给字段赋值函数类型，方式二
 var methodTwoInt2 : (Int, Int) -> Int = multipleNumber
 
-print("1123 * 321 = \(methodTwoInt2(1123,321))")
+//print("1123 * 321 = \(methodTwoInt2(1123,321))")
 
 
 func printTowInt(_ methodTwoInt: (Int, Int) -> Int , _ num1: Int, _ num2: Int){
     print("Two Int \(num1) \(num2) result :\(methodTwoInt(num1,num2))")
 }
 
-printTowInt(addTwoNumber, 179, 611)
+//printTowInt(addTwoNumber, 179, 611)
 
 func chooseMethod(_ type: Int) -> (Int, Int) -> Int{
     switch type {
@@ -197,13 +197,51 @@ func chooseMethod(_ type: Int) -> (Int, Int) -> Int{
 }
 
 
-// 看下这个写法
-print(chooseMethod(1)(112,2323))
+/* 看下这个写法 */
+//print(chooseMethod(1)(112,2323))
 
 var resultMoethod1 = chooseMethod(1)
 
 var resultMoethod2 = chooseMethod(3)
 
-print(resultMoethod1(112,2323))
+//print(resultMoethod1(112,2323))
+//
+//print(resultMoethod2(112,2323))
 
-print(resultMoethod2(112,2323))
+
+var names = ["Chris", "Alex", "Ewa", "Barry", "Daniella"]
+
+func sortWay(str1: String, str2: String) -> Bool {
+//    return str1 > str2
+    return str1 < str2
+}
+
+
+// 用函数代替辩闭包
+names.sort(by: sortWay)
+
+// 闭包常规样式
+names.sort(by: {(str1: String, str2: String) -> Bool in
+   return str1 > str2
+})
+
+// 闭包样式：去掉参数类型，因为所有的闭包的类型都可以根据上下文推导而来
+names.sort(by: {(str1,str2) -> Bool in
+   return str1 < str2
+})
+
+// 闭包格式：去掉参数类型，参数列表外的括号，以及->
+names.sort(by: {str1,str2 in return str1 < str2})
+
+// 闭包格式：去掉参数类型，参数列表外的括号，以及-> 和 retrun关键字
+names.sort(by: {str1,str2 in str1 < str2})
+
+
+// 闭包终极格式：去掉参数类型，参数列表外的括号，以及-> 和 retrun关键字，
+// 还有参数(用$0 ,$1代替第一个参数还有第二个参数)，还有 in关键字
+names.sort(by: {$0 < $1})
+
+
+for (index, value) in names.enumerated(){
+    print("Index \(index)'s value is \(value)")
+}
