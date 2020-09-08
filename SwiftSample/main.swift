@@ -8,6 +8,8 @@
 
 import Foundation
 
+runTotalSamples()
+
 func greet(person:String) -> String{
     let greeting="Hello \(person), Will you a great day!"
     return greeting
@@ -160,7 +162,7 @@ func greeting5(_ name: String, from hometown: String) -> String {
     "Hello \(name), I think your hometwown is \(hometown)"
 }
 
-print(greeting5("Jack", from: "Shenzhen"))
+//print(greeting5("Jack", from: "Shenzhen"))
 
 func addTwoNumber(_ num1: Int, _ num2: Int) -> Int{
     return num1+num2
@@ -222,7 +224,7 @@ names.sort(by: sortWay)
 
 // 闭包常规样式
 names.sort(by: {(str1: String, str2: String) -> Bool in
-   return str1 > str2
+   return str1 < str2
 })
 
 // 闭包样式：去掉参数类型，因为所有的闭包的类型都可以根据上下文推导而来
@@ -230,18 +232,29 @@ names.sort(by: {(str1,str2) -> Bool in
    return str1 < str2
 })
 
-// 闭包格式：去掉参数类型，参数列表外的括号，以及->
+// 闭包格式：去掉参数类型，参数列表外的括号，以及->和返回值
 names.sort(by: {str1,str2 in return str1 < str2})
 
-// 闭包格式：去掉参数类型，参数列表外的括号，以及-> 和 retrun关键字
+// 闭包格式：去掉参数类型，参数列表外的括号，以及->和返回值 ， 还有retrun关键字
 names.sort(by: {str1,str2 in str1 < str2})
 
-
-// 闭包终极格式：去掉参数类型，参数列表外的括号，以及-> 和 retrun关键字，
+// 闭包终极格式：去掉参数类型，参数列表外的括号，以及->和返回值 ， 还有retrun关键字，
 // 还有参数(用$0 ,$1代替第一个参数还有第二个参数)，还有 in关键字
 names.sort(by: {$0 < $1})
 
+// 闭包终极格式的终极格式：自己体会（没错，参数，大括号都没了...）
+names.sort(by: <)
+
+// 尾随闭包(函数的最后一个参数是闭包时)
+names.sort(){
+    $0 < $1
+    // <   //显然不能这么写
+}
+
 
 for (index, value) in names.enumerated(){
-    print("Index \(index)'s value is \(value)")
+//    print("Index \(index)'s value is \(value)")
 }
+
+
+
