@@ -218,6 +218,7 @@ func sortWay(str1: String, str2: String) -> Bool {
     return str1 < str2
 }
 
+// Swift Closures sample , powered by RT-Mart
 
 // 用函数代替闭包
 names.sort(by: sortWay)
