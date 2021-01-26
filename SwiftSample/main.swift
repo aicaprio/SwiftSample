@@ -219,7 +219,7 @@ func sortWay(str1: String, str2: String) -> Bool {
 }
 
 
-// 用函数代替辩闭包
+// 用函数代替闭包
 names.sort(by: sortWay)
 
 // 闭包常规样式
